@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0a1628;
+  --color-navy-light: #1e3a5f;
+  --color-navy-dark: #050b14;
+  --color-amber: #ff6b35;
+  --color-amber-dark: #e85d2e;
+  --color-amber-light: #fff4ed;
+  --color-paper: #f5f1ea;
+  --color-text: #0a1628;
+  --color-text-muted: #6c7a8c;
+  --color-success: #2ea44f;
+  --color-warning: #f0a020;
+  --color-danger: #d8412f;
+  --color-info: #2c7be5;
+  --color-border: #e2e0db;
+  --color-d1: #4a90e2;
+  --color-d2: #50c878;
+  --color-d3: #ff6b35;
+  --color-d4: #9b59b6;
+  --color-d5: #f0a020;
+  --font-sans: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    monospace;
+  --container-content: 1200px;
+  --container-prose: 65ch;
+}
+
+@layer base {
+  :root {
+    --color-navy: #0a1628;
+    --color-navy-light: #1e3a5f;
+    --color-navy-dark: #050b14;
+    --color-amber: #ff6b35;
+    --color-amber-dark: #e85d2e;
+    --color-amber-light: #fff4ed;
+    --color-paper: #f5f1ea;
+    --color-white: #ffffff;
+    --color-bg: var(--color-paper);
+    --color-text: #0a1628;
+    --color-text-muted: #6c7a8c;
+    --color-text-on-dark: #ffffff;
+    --color-success: #2ea44f;
+    --color-warning: #f0a020;
+    --color-danger: #d8412f;
+    --color-info: #2c7be5;
+    --color-border: #e2e0db;
+    --color-border-strong: #cdcac3;
+    --color-d1: #4a90e2;
+    --color-d2: #50c878;
+    --color-d3: #ff6b35;
+    --color-d4: #9b59b6;
+    --color-d5: #f0a020;
+    --font-sans: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+      monospace;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  body {
+    min-width: 320px;
+    min-height: 100dvh;
+    margin: 0;
+    color: var(--color-text);
+    background: var(--color-bg);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+}

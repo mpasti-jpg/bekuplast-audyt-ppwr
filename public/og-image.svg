@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0a1628"/>
+  <rect x="72" y="72" width="1056" height="486" rx="28" fill="#101f35" stroke="#ff6b35" stroke-width="3"/>
+  <text x="96" y="132" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700">bekuplast</text>
+  <text x="96" y="274" fill="#ff6b35" font-family="Arial, Helvetica, sans-serif" font-size="78" font-weight="800">Audyt gotowości PPWR</text>
+  <text x="100" y="342" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="600">Sprawdź firmę przed 12.08.2026</text>
+  <text x="100" y="424" fill="#d7dee9" font-family="Arial, Helvetica, sans-serif" font-size="30">4 minuty • Bezpłatnie • Wynik od razu</text>
+  <g transform="translate(904 168)">
+    <circle cx="92" cy="92" r="92" fill="#ff6b35" opacity="0.16"/>
+    <path d="M92 24 144 48v40c0 48-27 83-52 96-25-13-52-48-52-96V48l52-24Z" fill="#ff6b35"/>
+    <path d="M70 94 88 112l36-44" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
