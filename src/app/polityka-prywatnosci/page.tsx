@@ -6,11 +6,6 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 
-export const metadata = {
-  title: "Polityka prywatności",
-  robots: { index: false, follow: true },
-};
-
 export default function PrivacyPolicyPage() {
   return (
     <article className="mx-auto max-w-3xl px-4 py-12 md:px-6 md:py-20">
