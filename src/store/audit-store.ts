@@ -32,6 +32,7 @@ interface AuditStoreActions {
   getAnswer: (questionId: string) => AuditAnswer | undefined;
   isAnswered: (questionId: string) => boolean;
   hasPersistedAudit: () => boolean;
+  ensureAuditId: () => string;
   markCompleted: () => void;
 }
 
@@ -235,11 +236,33 @@ export const useAuditStore = create<AuditStore>((set, get) => ({
     return isFresh(startedAt) && currentStep > 0 && currentStep < 11;
   },
 
-  markCompleted: () => {
+  ensureAuditId: () => {
     const state = get();
-    const nextState = { ...pickState(state), currentStep: 11 };
+    if (state.auditId) return state.auditId;
+    const auditId = createAuditId();
+
+    const nextState: AuditStoreState = {
+      ...pickState(state),
+      auditId,
+      startedAt: state.startedAt ?? new Date().toISOString(),
+    };
+
     set(nextState);
     saveState(nextState);
-    track("audit_completed", { audit_id: state.auditId });
+    return auditId;
+  },
+
+  markCompleted: () => {
+    const state = get();
+    const auditId = state.auditId ?? createAuditId();
+    const nextState = {
+      ...pickState(state),
+      auditId,
+      startedAt: state.startedAt ?? new Date().toISOString(),
+      currentStep: 11,
+    };
+    set(nextState);
+    saveState(nextState);
+    track("audit_completed", { audit_id: auditId });
   },
 }));

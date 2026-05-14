@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
 import { COPY } from "@/content/ui-strings";
@@ -18,7 +18,9 @@ export function QuizOrchestrator() {
   const prev = useAuditStore((state) => state.prev);
   const auditId = useAuditStore((state) => state.auditId);
   const markCompleted = useAuditStore((state) => state.markCompleted);
+  const ensureAuditId = useAuditStore((state) => state.ensureAuditId);
   const hasPersisted = useAuditStore((state) => state.hasPersistedAudit);
+  const [mounted, setMounted] = useState(false);
   const redirectStarted = useRef(false);
   const resumeTracked = useRef(false);
 
@@ -26,13 +28,18 @@ export function QuizOrchestrator() {
     useAuditFlow();
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
     if (currentStep === 0 && !auditId && !hasPersisted()) {
       startNewAudit();
     }
-  }, [auditId, currentStep, hasPersisted, startNewAudit]);
+  }, [auditId, currentStep, hasPersisted, mounted, startNewAudit]);
 
   useEffect(() => {
-    if (resumeTracked.current || currentStep === 0) return;
+    if (!mounted || resumeTracked.current || currentStep === 0) return;
     const state = useAuditStore.getState();
     if (auditId && hasPersisted() && state.startedAt) {
       resumeTracked.current = true;
@@ -41,7 +48,7 @@ export function QuizOrchestrator() {
         resume_step: currentStep,
       });
     }
-  }, [auditId, currentStep, hasPersisted]);
+  }, [auditId, currentStep, hasPersisted, mounted]);
 
   useEffect(() => {
     const handleBeforeUnload = () => {
@@ -68,15 +75,15 @@ export function QuizOrchestrator() {
   }, []);
 
   useEffect(() => {
-    if (currentStep !== 11 || redirectStarted.current) return;
+    if (!mounted || currentStep !== 11 || redirectStarted.current) return;
     redirectStarted.current = true;
     const timer = window.setTimeout(() => {
-      const id = useAuditStore.getState().auditId;
-      if (id) router.push(`/wynik/${id}/`);
+      const id = ensureAuditId();
+      router.push(`/wynik/${id}/`);
     }, 1800);
 
     return () => window.clearTimeout(timer);
-  }, [currentStep, router]);
+  }, [currentStep, ensureAuditId, mounted, router]);
 
   const handleNext = () => {
     if (isLastQuestion) {
@@ -86,7 +93,7 @@ export function QuizOrchestrator() {
     next();
   };
 
-  if (currentStep === 11) {
+  if (!mounted || currentStep === 11) {
     return <LoadingScreen />;
   }
 

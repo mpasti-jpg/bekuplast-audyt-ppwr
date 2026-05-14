@@ -1,4 +1,5 @@
 import { Calculator, Linkedin, Phone } from "lucide-react";
+import { RestartAuditButton } from "./RestartAuditButton";
 
 export function SecondaryCTAs() {
   return (
@@ -35,7 +36,8 @@ export function SecondaryCTAs() {
         </a>
       </div>
 
-      <div className="text-center">
+      <div className="flex flex-col items-center gap-3 text-center">
+        <RestartAuditButton />
         <p className="text-sm text-text-muted">
           Pomóż branży - udostępnij audyt:
         </p>

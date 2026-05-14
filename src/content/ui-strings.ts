@@ -124,8 +124,8 @@ export const COPY = {
     },
 
     actions: {
-      back: '← Wstecz',
-      next: 'Dalej →',
+      back: 'Wstecz',
+      next: 'Dalej',
       skip: 'Pomiń pytanie',
       tooltipHelp: 'Co to znaczy?',
       submitAndContinue: 'Zobacz mój wynik',

@@ -1,6 +1,7 @@
 import type { AuditResult } from "@/types/audit";
 import { CATEGORIES } from "@/content/categories";
 import { INDUSTRY_LABELS, SCALE_LABELS } from "@/types/industry";
+import { RestartAuditButton } from "./RestartAuditButton";
 
 export function ScoreHeader({ result }: { result: AuditResult }) {
   const category = CATEGORIES[result.category];
@@ -9,9 +10,12 @@ export function ScoreHeader({ result }: { result: AuditResult }) {
 
   return (
     <header className="rounded-2xl bg-navy p-6 text-white shadow-xl md:p-12">
-      <p className="text-sm font-semibold uppercase tracking-wider text-amber">
-        Twój wynik audytu PPWR
-      </p>
+      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <p className="text-sm font-semibold uppercase tracking-wider text-amber">
+          Twój wynik audytu PPWR
+        </p>
+        <RestartAuditButton variant="dark" />
+      </div>
 
       <div className="mt-5 flex flex-col gap-6 md:flex-row md:items-end md:gap-10">
         <div className="flex items-end gap-3">
